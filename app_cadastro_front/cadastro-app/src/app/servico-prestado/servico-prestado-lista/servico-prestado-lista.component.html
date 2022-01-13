@@ -1,0 +1,70 @@
+<h1 class="mt-4">Serviço Prestado</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Consulta</li>
+</ol>
+<div>
+    <form #consultaForm="ngForm" (submit)="consultar()">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="inputNome">Nome Cliente:</label>
+                <input type="text" class="form-control" name="nome" id="inputNome" [(ngModel)]="nome">
+            </div> 
+
+            <div class="col-md-4">
+                <label for="mes">Mês:</label>
+                <select [(ngModel)]="mes" class="form-control" name="mes" id="mes">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let mes of meses" [value]="mes">{{ mes }}</option>
+                </select>
+            </div> 
+
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-info form-control" style="margin-top: 31px;">
+                    <i class="fa fa-search"></i> Consulta
+                </button>
+            </div>
+
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-md-3">
+
+                <button type="button" class="btn btn-primary" routerLink="/servicos-prestados/cadastrar">
+                    <i class="fa fa-plus"></i> Novo
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <br>
+
+    <div class="row">
+
+        <div class="col-md-12 alert alert-warning" role="alert" *ngIf="message">
+            {{ message }}
+        </div>
+
+        <div class="col-md-12">
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Descricao</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let s of lista">
+                        <td>{{ s.cliente.nome }}</td>
+                        <td>{{ s.descricao }}</td>
+                        <td>{{ s.valor }}</td>
+                        <td>{{ s.dtaServicoPrestado }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
